@@ -1,5 +1,5 @@
 # rest-hapi-demo
-A simple demonstration of the rest-hapi plugin.
+A simple demonstration of the [rest-hapi](https://github.com/JKHeadley/rest-hapi) plugin.
 
 ## Installation
 
