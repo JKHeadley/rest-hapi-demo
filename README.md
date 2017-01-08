@@ -8,12 +8,25 @@ clone the repo
 $ git clone https://github.com/JKHeadley/rest-hapi-demo.git
 ```
 
+install the dependencies
+```
+$ npm install
+```
+
 seed the models
 ```
 $ ./node_modules/.bin/rest-hapi-cli seed
 ```
 
-## Running the app
+## Using the app
+
+start the api
 ```
 $ gulp
 ```
+
+view the api docs at
+```
+http://localhost:8124/
+```
+
