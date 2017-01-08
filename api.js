@@ -8,11 +8,12 @@ function api(){
 
     let server = new Hapi.Server();
 
-    restHapi.config.absoluteModelPath = true;
-    restHapi.config.modelPath = __dirname + '/models';
+    var config = {
+        appTitle: "rest-hapi-demo",
+        enableTextSearch: true
+    };
 
-    // restHapi.config.enableQueryValidation = false;
-    restHapi.config.enableTextSearch = true;
+    restHapi.config = config;
 
     server.connection(restHapi.config.server.connection);
 
