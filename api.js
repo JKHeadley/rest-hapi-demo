@@ -1,21 +1,21 @@
 'use strict';
 
-var Hapi = require('hapi');
+let Hapi = require('hapi');
 let mongoose = require('mongoose');
-var restHapi = require('rest-hapi');
+let restHapi = require('rest-hapi');
 
 function api(){
 
     let server = new Hapi.Server();
 
-    var config = {
+    let config = {
         appTitle: "rest-hapi-demo",
         enableTextSearch: true
     };
 
-    restHapi.config = config;
-
     server.connection(restHapi.config.server.connection);
+
+    restHapi.config = config;
 
     server.register({
             register: restHapi,
