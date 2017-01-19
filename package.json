@@ -21,6 +21,7 @@
   "homepage": "https://github.com/JKHeadley/rest-hapi-demo#readme",
   "dependencies": {
     "gulp-nodemon": "^2.2.1",
+    "bcrypt": "latest",
     "rest-hapi": "latest"
   }
 }
