@@ -10,7 +10,8 @@ function api(){
 
     let config = {
         appTitle: "rest-hapi-demo",
-        enableTextSearch: true
+        enableTextSearch: true,
+        docExpansion: 'list'
     };
 
     server.connection(restHapi.config.server.connection);
