@@ -14,7 +14,7 @@ function api(){
         docExpansion: 'list'
     };
 
-    server.connection(restHapi.config.server.connection);
+    server.connection({ port: 8124 });
 
     restHapi.config = config;
 
