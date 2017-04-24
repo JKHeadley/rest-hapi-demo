@@ -25,8 +25,8 @@ start the api
 $ gulp
 ```
 
-view the api docs at
-```
-http://localhost:8124/
-```
+view the api docs at 
+
+[http://localhost:8124/](http://localhost:8124/)
+
 
