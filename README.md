@@ -22,7 +22,7 @@ $ ./node_modules/.bin/rest-hapi-cli seed
 
 start the api
 ```
-$ gulp
+$ npm start
 ```
 
 view the api docs at 

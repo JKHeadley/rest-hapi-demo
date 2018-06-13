@@ -4,7 +4,8 @@
   "description": "A simple demonstration of the rest-hapi plugin.",
   "main": "api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node api.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,7 @@
   },
   "homepage": "https://github.com/JKHeadley/rest-hapi-demo#readme",
   "dependencies": {
-    "gulp-nodemon": "^2.2.1",
-    "bcrypt": "latest",
+    "bcryptjs": "^2.4.0",
     "rest-hapi": "latest"
   }
 }

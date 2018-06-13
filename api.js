@@ -2,35 +2,41 @@
 
 let Hapi = require('hapi');
 let mongoose = require('mongoose');
-let restHapi = require('rest-hapi');
+let RestHapi = require('rest-hapi');
 
-function api(){
+async function api () {
+    try {
 
-    let server = new Hapi.Server();
+        let server = new Hapi.Server({ port: 8124 });
 
-    let config = {
-        appTitle: "rest-hapi-demo",
-        enableTextSearch: true,
-        docExpansion: 'list'
-    };
-
-    server.connection({ port: 8124 });
-
-    restHapi.config = config;
-
-    server.register({
-            register: restHapi,
-            options: {
-                mongoose: mongoose
+        let config = {
+            appTitle: "rest-hapi-demo",
+            enableTextSearch: true,
+            docExpansion: 'list',
+            mongo: {
+                URI: 'mongodb://localhost:27017/rest_hapi'
             }
-        },
-        function() {
-            server.start(function () {
-                restHapi.logUtil.logActionComplete(restHapi.logger, "Server Initialized", server.info);
-            });
-        });
+        };
 
-    return server;
+      RestHapi.config = config;
+
+        await server.register({
+                plugin: RestHapi,
+                options: {
+                    mongoose: mongoose,
+                  config: config
+                }
+            });
+
+        await server.start();
+
+      RestHapi.logUtil.logActionComplete(RestHapi.logger, "Server Initialized", server.info);
+
+        return server;
+    } catch (err) {
+        console.log("Error starting server:", err);
+    }
+
 }
 
 module.exports = api();
