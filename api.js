@@ -7,7 +7,7 @@ let RestHapi = require('rest-hapi');
 async function api () {
     try {
 
-        let server = new Hapi.Server({ port: 8124 });
+        let server = new Hapi.Server({ port: 8080});
 
         let config = {
             appTitle: "rest-hapi-demo",
