@@ -12,6 +12,7 @@ async function api () {
         let config = {
             appTitle: "rest-hapi-demo",
             enableTextSearch: true,
+            logRoutes: true,
             docExpansion: 'list',
             mongo: {
                 URI: 'mongodb://localhost:27017/rest_hapi'
