@@ -5,7 +5,17 @@ let RestHapi = require('rest-hapi')
 async function api () {
   try {
 
-    let server = new Hapi.Server({port: 8080})
+    let server = Hapi.Server({
+      port: 8080,
+      routes: {
+        validate: {
+          failAction: async (request, h, err) => {
+            RestHapi.logger.error(err);
+            throw err;
+          }
+        }
+      }
+    })
 
     let config = {
       appTitle: 'rest-hapi-demo',
@@ -18,8 +28,6 @@ async function api () {
         URI: 'mongodb://localhost:27017/rest_hapi',
       },
     }
-
-    RestHapi.config = config
 
     await server.register({
       plugin: RestHapi,
