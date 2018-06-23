@@ -18,8 +18,6 @@ async function api () {
       },
     }
 
-    RestHapi.config = config
-
     await server.register({
       plugin: RestHapi,
       options: {
