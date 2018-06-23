@@ -12,7 +12,8 @@ async function api () {
       enableTextSearch: true,
       logRoutes: true,
       docExpansion: 'list',
-      swaggerHost: 'localhost:8080',
+      swaggerHost: 'demo.resthapi.com',
+      enableSwaggerHttps: true,
       mongo: {
         URI: 'mongodb://localhost:27017/rest_hapi',
       },
