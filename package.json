@@ -22,6 +22,9 @@
   "homepage": "https://github.com/JKHeadley/rest-hapi-demo#readme",
   "dependencies": {
     "bcryptjs": "^2.4.0",
-    "rest-hapi": "latest"
+    "rest-hapi": "JKHeadley/rest-hapi#feature/discriminators",
+    "mongoose": "latest",
+    "joi": "^14.0.0",
+    "hoek": "^5.0.4"
   }
 }

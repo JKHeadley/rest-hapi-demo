@@ -23,9 +23,10 @@ async function api () {
       logRoutes: true,
       docExpansion: 'list',
       swaggerHost: 'localhost:8080',
-      mongo: {
-        URI: 'mongodb://localhost:27017/rest_hapi',
-      },
+      absoluteModelPath: true,
+      modelPath: __dirname + '/models',
+      absoluteApiPath: true,
+      apiPath: __dirname + '/api',
     }
 
     await server.register({
@@ -33,7 +34,7 @@ async function api () {
       options: {
         mongoose: mongoose,
         config: config,
-      },
+      }
     })
 
     await server.start()
