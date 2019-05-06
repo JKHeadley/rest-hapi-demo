@@ -28,4 +28,8 @@ view the api docs at
 
 [http://localhost:8080/](http://localhost:8080/)
 
+## Authentication
+
+To test the authentication flow, you must first create a user by providing an `email` and `password` to the `register` endpoint. Once the user is created, login with the same `email` and `password` using the `login` endpoint. If successful, the response will include a `token` field. You can now use this token value as an `authorization` header to access any authenticated endpoints.
+
 
