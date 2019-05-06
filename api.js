@@ -1,50 +1,44 @@
-let Hapi = require('hapi')
-let mongoose = require('mongoose')
-let RestHapi = require('rest-hapi')
+let Hapi = require("hapi");
+let mongoose = require("mongoose");
+let RestHapi = require("rest-hapi");
+let Auth = require("./plugins/auth.plugin.js");
 
-async function api () {
+async function api() {
   try {
-
     let server = Hapi.Server({
-      port: 8080,
-      routes: {
-        validate: {
-          failAction: async (request, h, err) => {
-            RestHapi.logger.error(err);
-            throw err;
-          }
-        }
-      }
-    })
+      port: 8080
+    });
 
     let config = {
-      appTitle: 'rest-hapi-demo',
-      enableTextSearch: true,
-      logRoutes: true,
-      docExpansion: 'list',
-      swaggerHost: 'localhost:8080',
+      appTitle: "rest-hapi-demo-auth",
+      swaggerHost: "localhost:8080",
       mongo: {
-        URI: 'mongodb://localhost:27017/rest_hapi',
+        URI: "mongodb://localhost:27018/rest_hapi"
       },
-    }
+      authStrategy: Auth.strategy
+    };
 
+    await server.register(Auth);
     await server.register({
       plugin: RestHapi,
       options: {
-        mongoose: mongoose,
-        config: config,
-      },
-    })
+        mongoose,
+        config
+      }
+    });
 
-    await server.start()
+    await server.start();
 
-    RestHapi.logUtil.logActionComplete(RestHapi.logger, 'Server Initialized', server.info)
+    RestHapi.logUtil.logActionComplete(
+      RestHapi.logger,
+      "Server Initialized",
+      server.info
+    );
 
-    return server
+    return server;
   } catch (err) {
-    console.log('Error starting server:', err)
+    console.log("Error starting server:", err);
   }
-
 }
 
-module.exports = api()
+module.exports = api();

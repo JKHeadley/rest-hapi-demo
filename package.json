@@ -22,6 +22,9 @@
   "homepage": "https://github.com/JKHeadley/rest-hapi-demo#readme",
   "dependencies": {
     "bcryptjs": "^2.4.0",
-    "rest-hapi": "latest"
+    "boom": "^7.3.0",
+    "hapi-auth-jwt2": "^8.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "rest-hapi": "^1.5.0"
   }
 }
