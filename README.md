@@ -9,7 +9,7 @@ You need [Node.js](https://nodejs.org/en/) installed and you'll need [MongoDB](h
 
 clone the repo
 ```
-$ git clone https://github.com/JKHeadley/rest-hapi-demo.git
+$ git clone --single-branch --branch feature/authentication https://github.com/JKHeadley/rest-hapi-demo.git
 ```
 
 install the dependencies
