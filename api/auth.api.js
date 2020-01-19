@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require("@hapi/joi");
 const RestHapi = require("rest-hapi");
 
 module.exports = function(server, mongoose, logger) {
