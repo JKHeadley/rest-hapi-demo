@@ -19,6 +19,7 @@ async function api () {
 
     let config = {
       appTitle: 'rest-hapi-demo',
+      version: '2.0.0',
       enableTextSearch: true,
       logRoutes: true,
       docExpansion: 'list',
