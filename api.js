@@ -13,7 +13,7 @@ async function api() {
       appTitle: "rest-hapi-demo-auth",
       swaggerHost: "localhost:8080",
       mongo: {
-        URI: "mongodb://localhost:27018/rest_hapi"
+        URI: "mongodb://localhost:27017/rest_hapi"
       },
       authStrategy: Auth.strategy
     };

@@ -1,4 +1,3 @@
-const Joi = require("@hapi/joi");
 const RestHapi = require("rest-hapi");
 
 module.exports = function(server, mongoose, logger) {
@@ -10,28 +9,29 @@ module.exports = function(server, mongoose, logger) {
     Log.note("Generating Registration endpoint");
 
     server.route({
-      method: "POST",
-      path: "/register",
-      config: {
-        handler: async function(request, h) {
-          const { email, password } = request.payload;
-          return await RestHapi.create(User, { email, password }, Log);
-        },
-        auth: false,
-        validate: {
-          payload: {
-            email: Joi.string()
-              .email()
-              .lowercase()
-              .required(),
-            password: Joi.string().required()
-          }
-        },
-        tags: ["api", "register"],
-        plugins: {
-          "hapi-swagger": {}
+        method: "POST",
+        path: "/register",
+        config: {
+            handler: async function(request, h) {
+                const { email, password } = request.payload;
+                return await RestHapi.create(User, { email, password }, Log);
+            },
+            auth: false,
+            validate: {
+                payload: {
+                    email: RestHapi.joi
+                        .string()
+                        .email()
+                        .lowercase()
+                        .required(),
+                    password: RestHapi.joi.string().required()
+                }
+            },
+            tags: ["api", "register"],
+            plugins: {
+                "hapi-swagger": {}
+            }
         }
-      }
     });
   })();
 
@@ -40,7 +40,7 @@ module.exports = function(server, mongoose, logger) {
     const Log = logger.bind("Login");
     const User = mongoose.model("user");
 
-    const Boom = require("boom");
+    const Boom = require("@hapi/boom");
 
     Log.note("Generating Login endpoint");
 
@@ -71,25 +71,26 @@ module.exports = function(server, mongoose, logger) {
     };
 
     server.route({
-      method: "POST",
-      path: "/login",
-      config: {
-        handler: loginHandler,
-        auth: false,
-        validate: {
-          payload: {
-            email: Joi.string()
-              .email()
-              .lowercase()
-              .required(),
-            password: Joi.string().required()
-          }
-        },
-        tags: ["api", "login"],
-        plugins: {
-          "hapi-swagger": {}
+        method: "POST",
+        path: "/login",
+        config: {
+            handler: loginHandler,
+            auth: false,
+            validate: {
+                payload: {
+                    email: RestHapi.joi
+                        .string()
+                        .email()
+                        .lowercase()
+                        .required(),
+                    password: RestHapi.joi.string().required()
+                }
+            },
+            tags: ["api", "login"],
+            plugins: {
+                "hapi-swagger": {}
+            }
         }
-      }
     });
   })();
 };
