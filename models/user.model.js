@@ -1,14 +1,13 @@
-let Joi = require('joi')
 // NOTE: Install bcrypt then uncomment the line below
 // let bcrypt = require('bcryptjs')
-let RestHapi = require('rest-hapi')
+const RestHapi = require('rest-hapi')
 
 // TODO: assign a unique text index to email field
 
 module.exports = function(mongoose) {
-  let modelName = 'user'
-  let Types = mongoose.Schema.Types
-  let Schema = new mongoose.Schema({
+  const modelName = 'user'
+  const Types = mongoose.Schema.Types
+  const Schema = new mongoose.Schema({
     email: {
       type: Types.String,
       unique: true,
@@ -59,15 +58,15 @@ module.exports = function(mongoose) {
         // Password Update Endpoint
         function(server, model, options, logger) {
           const Log = logger.bind('Password Update')
-          let Boom = require('boom')
+          const Boom = require('@hapi/boom')
 
-          let collectionName = model.collectionDisplayName || model.modelName
+          const collectionName = model.collectionDisplayName || model.modelName
 
           Log.note('Generating Password Update endpoint for ' + collectionName)
 
-          let handler = async function(request, h) {
+          const handler = async function(request, h) {
             try {
-              let hashedPassword = model.generatePasswordHash(
+              const hashedPassword = model.generatePasswordHash(
                 request.payload.password
               )
 
@@ -95,7 +94,8 @@ module.exports = function(mongoose) {
                   _id: RestHapi.joiHelper.joiObjectId().required()
                 },
                 payload: {
-                  password: Joi.string()
+                  password: RestHapi.joi
+                    .string()
                     .required()
                     .description("The user's new password")
                 }
@@ -103,7 +103,7 @@ module.exports = function(mongoose) {
               plugins: {
                 'hapi-swagger': {
                   responseMessages: [
-                    { code: 200, message: 'Success' },
+                    { code: 204, message: 'Success' },
                     { code: 400, message: 'Bad Request' },
                     { code: 404, message: 'Not Found' },
                     { code: 500, message: 'Internal Server Error' }
@@ -116,7 +116,7 @@ module.exports = function(mongoose) {
       ],
       create: {
         pre: function(payload, logger) {
-          let hashedPassword = mongoose
+          const hashedPassword = mongoose
             .model('user')
             .generatePasswordHash(payload.password)
 
@@ -128,7 +128,7 @@ module.exports = function(mongoose) {
     },
 
     generatePasswordHash: function(password) {
-      let hash = password
+      const hash = password
       // NOTE: Uncomment these two lines once bcrypt is installed
       // let salt = bcrypt.genSaltSync(10)
       // hash = bcrypt.hashSync(password, salt)
